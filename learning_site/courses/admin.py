@@ -17,10 +17,13 @@ class AnswerInline(admin.StackedInline):
     
 class CourseAdmin(admin.ModelAdmin):
     inlines = [TextInline, QuizInline]
+    search_fields = ['title', 'description']
+    list_filter = ['created_at', 'is_live']
     
     
 class QuestionAdmin(admin.ModelAdmin):
     inlines = [AnswerInline,]
+    search_fields = ['prompt']
     
     
 class QuizAdmin(admin.ModelAdmin):
