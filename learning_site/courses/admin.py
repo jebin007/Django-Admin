@@ -39,6 +39,7 @@ class CourseAdmin(admin.ModelAdmin):
     inlines = [TextInline, QuizInline]
     search_fields = ['title', 'description']
     list_filter = ['created_at', 'is_live', YearListFilter]
+    list_display = ['title', 'created_at', 'is_live']
     
     
 class QuestionAdmin(admin.ModelAdmin):
