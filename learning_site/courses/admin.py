@@ -41,6 +41,12 @@ class CourseAdmin(admin.ModelAdmin):
     list_filter = ['created_at', 'is_live', YearListFilter]
     list_display = ['title', 'created_at', 'is_live', 'time_to_complete']
     list_editable = ['is_live']
+
+    class Media:
+        js = ('js/vendor/markdown.js', 'js/preview.js')
+        css = {
+            'all': ('css/preview.css',),
+        }
     
     
 class QuestionAdmin(admin.ModelAdmin):
