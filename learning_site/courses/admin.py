@@ -3,6 +3,11 @@ from datetime import date
 
 from . import models
 
+def make_published(modeladmin, request, queryset):
+    queryset.update(status='p', is_live=True)
+
+make_published.short_description = "Mark selected courses as Published"     #defining an action
+
 
 class TextInline(admin.StackedInline):
     model = models.Text
@@ -39,8 +44,9 @@ class CourseAdmin(admin.ModelAdmin):
     inlines = [TextInline, QuizInline]
     search_fields = ['title', 'description']
     list_filter = ['created_at', 'is_live', YearListFilter]
-    list_display = ['title', 'created_at', 'is_live', 'time_to_complete']
-    list_editable = ['is_live']
+    list_display = ['title', 'created_at', 'is_live', 'time_to_complete', 'status']
+    list_editable = ['status']
+    actions = [make_published]
 
     class Media:
         js = ('js/vendor/markdown.js', 'js/preview.js')
