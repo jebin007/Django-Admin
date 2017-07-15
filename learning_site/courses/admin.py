@@ -12,7 +12,7 @@ class QuizInline(admin.StackedInline):
     model = models.Quiz
 
 
-class AnswerInline(admin.StackedInline):
+class AnswerInline(admin.TabularInline):
     model = models.Answer
 
 class YearListFilter(admin.SimpleListFilter):
@@ -48,6 +48,7 @@ class QuestionAdmin(admin.ModelAdmin):
     search_fields = ['prompt']
     list_display = ['prompt', 'quiz', 'order', ]
     list_editable = ['quiz', 'order']
+    radio_fields = {'quiz': admin.HORIZONTAL}
     
     
 class QuizAdmin(admin.ModelAdmin):
