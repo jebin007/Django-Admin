@@ -55,7 +55,17 @@ class QuizAdmin(admin.ModelAdmin):
     
     
 class TextAdmin(admin.ModelAdmin):
-    fields = ['course', 'title', 'order', 'description']
+    # fields = ['course', 'title', 'order', 'description', 'content', ]
+    fieldsets = (
+        (None, {
+            'fields': ('course', 'title', 'order', 'description')
+        }),
+        ('Add content', {
+            'fields': ('content',),
+            'classes': ('collapse',)
+        })
+
+    )
 
 
 admin.site.register(models.Course, CourseAdmin)
